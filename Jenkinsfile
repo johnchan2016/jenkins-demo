@@ -20,6 +20,7 @@ node {
 
         app = docker.build("${registry}")
     }
+    
 
     stage('Test image') {
         /* Ideally, we would run a test framework against our image.
