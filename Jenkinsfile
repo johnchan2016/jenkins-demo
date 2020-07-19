@@ -42,7 +42,7 @@ node {
                 sh 'git status'
                 sh 'git add .'
                 sh "git commit -m 'Jenkins'"
-                sh 'git fetch'
+                sh 'git pull https://${encodedUser}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
                 sh 'git push https://${encodedUser}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
             }
         }
