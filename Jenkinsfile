@@ -31,7 +31,7 @@ node {
         dir("jenkins-demo") {
             withCredentials([usernamePassword(credentialsId: 'gitHubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                 sh 'ls'
-                sh 'echo "Added another line to REAMD.md" >> README.md'
+                sh 'echo "Added another line to REAMD.md" >> README.txt'
                 sh 'git status'
                 sh 'git add .'
                 sh("git commit -m 'Jenkins'")
