@@ -31,6 +31,7 @@ node {
         dir("jenkins-demo") {
             withCredentials([usernamePassword(credentialsId: 'gitHubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                 script {
+                    env.encodedUser=URLEncoder.encode(GIT_USERNAME, "UTF-8")
                     env.encodedPass=URLEncoder.encode(GIT_PASSWORD, "UTF-8")
                 }
                 
@@ -41,7 +42,7 @@ node {
                 sh 'git status'
                 sh 'git add .'
                 sh "git commit -m 'Jenkins'"
-                sh 'git pull https://${GIT_PASSWORD}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
+                sh 'git pull https://${encodedUser}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
                 sh 'git push '
             }
         }
