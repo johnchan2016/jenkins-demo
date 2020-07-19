@@ -31,6 +31,7 @@ node {
         dir("jenkins-demo") {
             withCredentials([usernamePassword(credentialsId: 'gitHubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                 script {
+                    env.encodedUser=URLEncoder.encode(GIT_USERNAME, "UTF-8")
                     env.encodedPass=URLEncoder.encode(GIT_PASSWORD, "UTF-8")
                 }
                 
@@ -42,7 +43,7 @@ node {
                 sh 'git add .'
                 sh "git commit -m 'Jenkins'"
                 sh 'git branch -r'
-                sh 'git remote add origin https://${GIT_USERNAME}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
+                sh 'git remote add origin https://${encodedUser}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
             }
         }
     }
