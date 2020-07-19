@@ -26,7 +26,7 @@ node {
         }
     } */
 
-    stages(){
+    stages{
         stage('git push') {
             script {
                 withCredentials([usernamePassword(credentialsId: 'githubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
