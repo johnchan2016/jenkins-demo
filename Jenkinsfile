@@ -40,8 +40,9 @@ node {
                 sh 'echo "Added another line to REAMD.md" >> README.txt'
                 sh 'git status'
                 sh 'git add .'
-                sh("git commit -m 'Jenkins'")
-                sh('git push origin master')
+                sh "git commit -m 'Jenkins'"
+                sh 'git remote add origin https://${GIT_USERNAME}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
+                sh 'git push'
             }
         }
     }
