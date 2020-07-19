@@ -6,7 +6,7 @@ pipeline {
         registry = 'myhk2009/sample-microservices'
         registryCredential = 'dockerhubCredentials'
         VERSION_NUMBER = '1.0.0'
-        REPO= 'https://github.com/johnchan2016/jenkins-demo.git'
+        REPO= 'github.com/johnchan2016/jenkins-demo.git'
     }
 
 /*     stage('Clone repository') {
