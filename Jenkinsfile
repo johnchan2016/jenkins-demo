@@ -26,12 +26,16 @@ pipeline {
     } */
 
     stage('git push') {
-        withCredentials([usernamePassword(credentialsId: 'githubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-            sh 'REPO=https://github.com/johnchan2016/jenkins-demo.git'
-            sh 'git clone ${REPO}'
-            sh 'echo "Added another line to REAMD.md" >> README.md'
-            sh("git tag -a some_tag -m 'Jenkins'")
-            sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@${REPO} --tags')
+        script {
+            sh "echo 'here'"
+
+            withCredentials([usernamePassword(credentialsId: 'githubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                sh 'REPO=https://github.com/johnchan2016/jenkins-demo.git'
+                sh 'git clone ${REPO}'
+                sh 'echo "Added another line to REAMD.md" >> README.md'
+                sh("git tag -a some_tag -m 'Jenkins'")
+                sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@${REPO} --tags')
+            }
         }
     }
 
