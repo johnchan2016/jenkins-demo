@@ -30,8 +30,6 @@ node {
     stage('git push') {
         dir("jenkins-demo") {
             sh "ls"
-        }
-        script {
             withCredentials([usernamePassword(credentialsId: 'gitHubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                 sh 'ls'
                 sh 'echo "Added another line to REAMD.md" >> README.md'
@@ -39,7 +37,6 @@ node {
                 sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@${REPO} --tags')
             }
         }
-
     }
 
 /*     stage('Push image') {
