@@ -31,6 +31,8 @@ node {
         script {
             withCredentials([usernamePassword(credentialsId: 'gitHubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                 sh 'ls'
+                sh 'cd jenkins-demo'
+                sh 'ls'
                 sh 'echo "Added another line to REAMD.md" >> README.md'
                 sh("git tag -a some_tag -m 'Jenkins'")
                 sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@${REPO} --tags')
