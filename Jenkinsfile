@@ -42,8 +42,8 @@ node {
                 sh 'git add .'
                 sh "git commit -m 'Jenkins'"
                 sh 'git branch -r'
-                sh 'git pull origin master'
-                sh 'git push https://${GIT_USERNAME}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
+                sh 'git push origin'
+                //sh 'git push https://${GIT_USERNAME}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
             }
         }
     }
