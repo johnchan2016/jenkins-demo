@@ -31,6 +31,8 @@ node {
         dir("jenkins-demo") {
             withCredentials([usernamePassword(credentialsId: 'gitHubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                 sh 'ls'
+                sh 'git config --global user.name "johnchan"'
+                sh 'git config --global user.email myhk2009@gmail.com'
                 sh 'echo "Added another line to REAMD.md" >> README.txt'
                 sh 'git status'
                 sh 'git add .'
