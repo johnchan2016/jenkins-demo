@@ -1,13 +1,13 @@
-pipeline {
+node {
 
-    def app
+    //def app
 
-    environment {
+/*     environment {
         registry = 'myhk2009/sample-microservices'
         registryCredential = 'dockerhubCredentials'
         VERSION_NUMBER = '1.0.0'
-        REPO= 'https://github.com/johnchan2016/jenkins-demo.git'
-    }
+        REPO= 'github.com/johnchan2016/jenkins-demo.git'
+    } */
 
 /*     stage('Clone repository') {
         sh 'echo "Start Clone"'
@@ -26,15 +26,24 @@ pipeline {
         }
     } */
 
-    stage('git push') {
-        script {
-            sh "echo 'here'"
 
-            withCredentials([usernamePassword(credentialsId: 'githubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                sh 'git clone ${REPO}'
-                sh 'echo "Added another line to REAMD.md" >> README.md'
-                sh("git tag -a some_tag -m 'Jenkins'")
-                sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@${REPO} --tags')
+    stage('git push') {
+        dir("jenkins-demo") {
+            withCredentials([usernamePassword(credentialsId: 'gitHubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                script {
+                    env.encodedPass=URLEncoder.encode(GIT_PASSWORD, "UTF-8")
+                }
+                
+                sh 'ls'
+                sh 'git config --global user.name "johnchan"'
+                sh 'git config --global user.email myhk2009@gmail.com'
+                sh 'echo "Added another line to REAMD.md" >> README.txt'
+                sh 'git status'
+                sh 'git add .'
+                sh "git commit -m 'Jenkins'"
+                sh 'git branch -r'
+                sh 'git pull origin master'
+                sh 'git push https://${GIT_USERNAME}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
             }
         }
     }
