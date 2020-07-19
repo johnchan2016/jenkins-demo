@@ -28,10 +28,11 @@ node {
 
 
     stage('git push') {
+        dir("jenkins-demo") {
+            sh "ls"
+        }
         script {
             withCredentials([usernamePassword(credentialsId: 'gitHubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                sh 'ls'
-                sh 'cd jenkins-demo'
                 sh 'ls'
                 sh 'echo "Added another line to REAMD.md" >> README.md'
                 sh("git tag -a some_tag -m 'Jenkins'")
