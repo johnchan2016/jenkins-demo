@@ -32,7 +32,7 @@ node {
             withCredentials([usernamePassword(credentialsId: 'gitHubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                 sh 'ls'
                 sh 'echo "Added another line to REAMD.md" >> README.md'
-                sh("git -m 'Jenkins'")
+                sh("git commit -m 'Jenkins'")
                 sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/johnchan2016/jenkins-demo.git')
             }
         }
