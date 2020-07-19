@@ -1,6 +1,6 @@
 pipeline {
 
-    def app
+    //def app
 
     environment {
         registry = 'myhk2009/sample-microservices'
