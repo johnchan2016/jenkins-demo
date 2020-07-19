@@ -2,12 +2,12 @@ node {
 
     //def app
 
-    environment {
+/*     environment {
         registry = 'myhk2009/sample-microservices'
         registryCredential = 'dockerhubCredentials'
         VERSION_NUMBER = '1.0.0'
         REPO= 'github.com/johnchan2016/jenkins-demo.git'
-    }
+    } */
 
 /*     stage('Clone repository') {
         sh 'echo "Start Clone"'
@@ -29,12 +29,11 @@ node {
 
     stage('git push') {
         dir("jenkins-demo") {
-            sh "ls"
             withCredentials([usernamePassword(credentialsId: 'gitHubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                 sh 'ls'
                 sh 'echo "Added another line to REAMD.md" >> README.md'
                 sh("git tag -a some_tag -m 'Jenkins'")
-                sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@${REPO} --tags')
+                sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/johnchan2016/jenkins-demo.git --tags')
             }
         }
     }
