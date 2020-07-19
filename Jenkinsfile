@@ -6,6 +6,7 @@ pipeline {
         registry = 'myhk2009/sample-microservices'
         registryCredential = 'dockerhubCredentials'
         VERSION_NUMBER = '1.0.0'
+        REPO= 'https://github.com/johnchan2016/jenkins-demo.git'
     }
 
 /*     stage('Clone repository') {
@@ -30,7 +31,6 @@ pipeline {
             sh "echo 'here'"
 
             withCredentials([usernamePassword(credentialsId: 'githubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
-                sh 'REPO=https://github.com/johnchan2016/jenkins-demo.git'
                 sh 'git clone ${REPO}'
                 sh 'echo "Added another line to REAMD.md" >> README.md'
                 sh("git tag -a some_tag -m 'Jenkins'")
