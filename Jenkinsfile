@@ -30,6 +30,10 @@ node {
     stage('git push') {
         dir("jenkins-demo") {
             withCredentials([usernamePassword(credentialsId: 'gitHubCredentials', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                script {
+                    env.encodedPass=URLEncoder.encode(GIT_PASSWORD, "UTF-8")
+                }
+                
                 sh 'ls'
                 sh 'git config --global user.name "johnchan"'
                 sh 'git config --global user.email myhk2009@gmail.com'
@@ -37,7 +41,7 @@ node {
                 sh 'git status'
                 sh 'git add .'
                 sh("git commit -m 'Jenkins'")
-                sh('git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/johnchan2016/jenkins-demo.git')
+                sh('git push https://${GIT_USERNAME}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git')
             }
         }
     }
