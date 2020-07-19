@@ -41,7 +41,7 @@ node {
                 sh 'git status'
                 sh 'git add .'
                 sh("git commit -m 'Jenkins'")
-                sh('git push')
+                sh('git push origin master')
             }
         }
     }
