@@ -41,8 +41,9 @@ node {
                 sh 'git status'
                 sh 'git add .'
                 sh "git commit -m 'Jenkins'"
-                //sh 'git remote add origin https://${GIT_USERNAME}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
-                sh 'git push origin master https://${GIT_USERNAME}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
+                sh 'git branch -r'
+                sh 'git fetch origin master'
+                sh 'git push https://${GIT_USERNAME}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
             }
         }
     }
