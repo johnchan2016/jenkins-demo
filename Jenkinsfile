@@ -42,7 +42,7 @@ node {
                 sh 'git add .'
                 sh "git commit -m 'Jenkins'"
                 //sh 'git remote add origin https://${GIT_USERNAME}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
-                sh 'git push -u origin master'
+                sh 'git push origin master https://${GIT_USERNAME}:${encodedPass}@github.com/johnchan2016/jenkins-demo.git'
             }
         }
     }
